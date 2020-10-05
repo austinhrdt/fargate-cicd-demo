@@ -8,47 +8,50 @@ on:
     branches: [main]
 
 name: Build
-  
+
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
 
     steps:
+
+    # install go
     - name: Install Go
       uses: actions/setup-go@v2
       with:
         go-version: '^1.14'
 
+    # checkout source code
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Configure AWS credentials
+    # assign aws credentials from GitHub secrets
+    - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - name: Login to Amazon ECR
+    # log into aws container image registry
+    - name: AWS ECR Login
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push image to Amazon ECR
-
+    # build and push image to ecr
+    - name: Build and Push Image to AWS ECR
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: api
-        #IMAGE_TAG: ${{ github.sha }}
       run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
         REGISTRY=$ECR_REGISTRY make container
         REGISTRY=$ECR_REGISTRY make push
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
-    - name: Fill in the new image ID in the Amazon ECS task definition
+    
+    # render task definition with newly build image
+    - name: Render Task Definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
@@ -56,7 +59,8 @@ jobs:
         container-name: api
         image: ${{ steps.build-image.outputs.image }}
 
-    - name: Deploy Amazon ECS task definition
+    # deploy the task definition
+    - name: Deploy AWS ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
