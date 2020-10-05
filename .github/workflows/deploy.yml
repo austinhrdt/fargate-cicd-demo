@@ -17,6 +17,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      uses: actions/setup-go@v2
+      with:
+        go-version: '^1.14'
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -30,9 +33,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build, tag, and push image to Amazon ECR
-      uses: actions/setup-go@v2
-      with:
-        go-version: '^1.14'
+
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
