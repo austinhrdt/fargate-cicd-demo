@@ -9,7 +9,7 @@ import (
 
 // home serves home page
 func home(w http.ResponseWriter, r *http.Request){
-    fmt.Fprintf(w, "Hello, World!")
+    fmt.Fprintf(w, "Hello, TEST!")
 }
 
 // main application entrypoint
