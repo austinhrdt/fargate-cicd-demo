@@ -40,17 +40,15 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: api
-        IMAGE_TAG: ${{ github.sha }}
+        #IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        echo $ECR_REGISTRY && echo $IMAGE_TAG
-        REGISTRY=$ECR_REGISTRY TAG=$IMAGE_TAG make container
-        REGISTRY=$ECR_REGISTRY TAG=$IMAGE_TAG make publish
-        # docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        # docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        # echo $ECR_REGISTRY && echo $IMAGE_TAG
+        REGISTRY=$ECR_REGISTRY make container
+        REGISTRY=$ECR_REGISTRY make push
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
