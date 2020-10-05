@@ -1,11 +1,11 @@
 {
-    "family": "sidious-fargate",
+    "family": "fargate-demo",
     "executionRoleArn": "arn:aws:iam::363474188884:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
     "containerDefinitions": [
         {
-            "name": "sidious-bot",
-            "image": "sidious",
+            "name": "api",
+            "image": "api",
             "portMappings": [
                 {
                     "containerPort": 80,
@@ -13,18 +13,12 @@
                     "protocol": "tcp"
                 }
             ],
-            "secrets": [
-                {
-                    "name": "DISCORD_TOKEN",
-                    "valueFrom": "sidious_token"
-                }
-            ],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "awslogs-sidious",
+                    "awslogs-group": "awslogs-demo",
                     "awslogs-region": "us-east-1",
-                    "awslogs-stream-prefix": "awslogs-sidious"
+                    "awslogs-stream-prefix": "awslogs-demo"
                 }
             },
             "essential": true
