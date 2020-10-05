@@ -1,69 +1,70 @@
-# This workflow will build and push a new container image to Amazon ECR,
-# and then will deploy a new task definition to Amazon ECS, when main is updated
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
-name: Build
-
-jobs:
-  deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-
-    steps:
-
-    # install go
-    - name: Install Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: '^1.14'
-
-    # checkout source code
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    # assign aws credentials from GitHub secrets
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
-
-    # log into aws container image registry
-    - name: AWS ECR Login
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
-
-    # build and push image to ecr
-    - name: Build and Push Image to AWS ECR
-      id: build-image
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: api
-      run: |
-        REGISTRY=$ECR_REGISTRY make container
-        REGISTRY=$ECR_REGISTRY make push
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
-    
-    # render task definition with newly build image
-    - name: Render Task Definition
-      id: task-def
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: build/task-definition.json
-        container-name: api
-        image: ${{ steps.build-image.outputs.image }}
-
-    # deploy the task definition
-    - name: Deploy AWS ECS task definition
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: demo-api-service
-        cluster: demo-cluster
-        wait-for-service-stability: true
+## This workflow will build and push a new container image to Amazon ECR,
+## and then will deploy a new task definition to Amazon ECS, when main is updated
+#
+#on:
+#  push:
+#    branches: [main]
+#  pull_request:
+#    branches: [main]
+#
+#name: Build
+#
+#jobs:
+#  deploy:
+#    name: Deploy
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#
+#    # install go
+#    - name: Install Go
+#      uses: actions/setup-go@v2
+#      with:
+#        go-version: '^1.14'
+#
+#    # checkout source code
+#    - name: Checkout
+#      uses: actions/checkout@v2
+#
+#    # assign aws credentials from GitHub secrets
+#    - name: Configure AWS Credentials
+#      uses: aws-actions/configure-aws-credentials@v1
+#      with:
+#        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#        aws-region: us-east-1
+#
+#    # log into aws container image registry
+#    - name: AWS ECR Login
+#      id: login-ecr
+#      uses: aws-actions/amazon-ecr-login@v1
+#
+#    # build and push image to ecr
+#    - name: Build and Push Image to AWS ECR
+#      id: build-image
+#      env:
+#        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+#        ECR_REPOSITORY: api
+#      run: |
+#        REGISTRY=$ECR_REGISTRY make container
+#        REGISTRY=$ECR_REGISTRY make push
+#        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:latest"
+#    
+#    # render task definition with newly build image
+#    - name: Render Task Definition
+#      id: task-def
+#      uses: aws-actions/amazon-ecs-render-task-definition@v1
+#      with:
+#        task-definition: build/task-definition.json
+#        container-name: api
+#        image: ${{ steps.build-image.outputs.image }}
+#
+#    # deploy the task definition
+#    - name: Deploy AWS ECS task definition
+#      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+#      with:
+#        task-definition: ${{ steps.task-def.outputs.task-definition }}
+#        service: demo-api-service
+#        cluster: demo-cluster
+#        wait-for-service-stability: true
+#
