@@ -30,8 +30,8 @@
 
 				<section>
 					<section data-background="dark">
-						<h3>Fargate + GitHub Actions </h3>
-						<body> Austin Hardt </body>
+						<h3>AWS Fargate + GitHub Actions</h3>
+						<body>Austin Hardt</body>
 					</section>
 
 					<section data-background="dark">
@@ -40,15 +40,15 @@
 							<li>Containers</li>
 							<li>CICD</li>
 							<li>GitHub Actions</li>
-							<li>Fargate</li>
-						</ul> 
+							<li>AWS Fargate</li>
+						</ul>
 					</section>
 					<section data-background="dark">
 						<p>After that, I'll demonstate a deployment.</p>
 						<ol>
 							<li>Commit Changes</li>
 							<li>Watch</li>
-						</ol> 
+						</ol>
 					</section>
 				</section>
 
@@ -57,11 +57,51 @@
 						<h2>Containers</h2>
 					</section>
 					<section data-background="lightblue">
-						<h2>data-background: #ff0000</h2>
+						<p>What is a container?</p>
+						<br>
+						<p>In the most basic of definitions, a container is an isolated runtime environment that is used to host an application and it's dependencies</p>
 					</section>
 					<section data-background="lightblue">
-						<h2>data-background: #ff0000</h2>
+						<p>How is that different than a VM?</p>
+						<br>
+						<p>Both are similarly provisioned using images. You can think of an image as a template for creating new instances</p>
 					</section>
+					<section data-background="lightblue">
+						<p>Containers use a shared OS and are often used to package single functions to perform specific tasks (e.g., microservices)</p>
+						<br>
+						<p>Containers are lightweight (MBs) and provision quickly. This makes them portable.</p>
+					</section>
+					<section data-background="lightblue">
+						<p>VMs contain their own OS, allowing them to perform multiple resource-intensive functions at once (e.g., monoliths)</p>
+						<br>
+						<p>This means VMs are quite heavy (GBs), hence take a relatively long time to provision</p>
+					</section>
+					<section data-background="lightblue">
+						<p>A major advantage with containers is that OS distributions and underlying infrastructure are abstracted away.</p>
+						<br>
+						<p>Discrepancies between production and staging environments? What's that?</p>
+					</section>
+					<section data-background="lightblue">
+						<p>Containers are better suited for microservice architecture. VMs are better for monolithic architecture.</p>
+						<br>
+						<p>Which is better? Hint: not monolithic</p>
+					</section>
+					<section data-background="lightblue">
+						<p>Decoupled applications allow each compontent to perfrom its tasks independantly. A change in one service shouldn't require a change in other services</p>
+						<br>
+						<p>Using containers as microservices opens the door to horizontal scalability and high availablity</p>
+					</section>
+					<section data-background="lightblue">
+						<p>Quick recap of the benefits of containers in a microservice architecture</p>
+						<br>
+						<ul>
+							<li>Lightweight, portable, and rapid provisioning</li>
+							<li>Decoupled and highly available</li>
+							<li>Reproducible and horizontally scalable</li>
+							<li>adsf</li>
+						</ul>
+					</section>
+
 				</section>
 
 				<section>
@@ -69,10 +109,10 @@
 						<h2>CICD</h2>
 					</section>
 					<section data-background="#17202a">
-						<h2>data-background: rgba(0, 0, 0, 0.2)</h2>
+						<p>Besides version control, a decent branching strategy, and the actual source code, CICD is the most important component of software applications</p>
 					</section>
 					<section data-background="#17202a">
-						<h2>data-background: salmon</h2>
+						<p>removes the human from performing tests and deployments. all repetivite tasks should be eliminated or automated</p>
 					</section>
 				</section>
 
@@ -84,7 +124,7 @@
 						<h2>data-background: rgba(0, 0, 0, 0.2)</h2>
 					</section>
 					<section data-background="white">
-						<h2>data-background: salmon</h2>
+						<h2></h2>
 					</section>
 				</section>
 
