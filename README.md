@@ -4,4 +4,4 @@
 
 ## Introduction
 
-Using github actions to build and deploy container images to aws ecr. We deploy a single golang microservice api container to our cluster using a task definition.
+Using GitHub Actions to build and deploy a small, containerized, Go API on AWS Fargate. The container is built using [go-build-template](https://github.com/austinhrdt/go-build-template) and pushed to AWS Elastic Container Registry (ECR). Using the newly built container image, a task definition is rendered and deployed.

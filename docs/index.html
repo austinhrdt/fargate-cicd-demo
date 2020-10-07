@@ -67,14 +67,14 @@
 						<p>Both are similarly provisioned using images. You can think of an image as a template for creating new instances</p>
 					</section>
 					<section data-background="lightblue">
-						<p>Containers use a shared OS and are often used to package single functions to perform specific tasks (e.g., microservices)</p>
-						<br>
-						<p>Containers are lightweight (MBs) and provision quickly. This makes them portable.</p>
-					</section>
-					<section data-background="lightblue">
 						<p>VMs contain their own OS, allowing them to perform multiple resource-intensive functions at once (e.g., monoliths)</p>
 						<br>
 						<p>This means VMs are quite heavy (GBs), hence take a relatively long time to provision</p>
+					</section>
+					<section data-background="lightblue">
+						<p>Containers use a shared OS and are often used to package single functions to perform specific tasks (e.g., microservices)</p>
+						<br>
+						<p>Containers are lightweight (MBs) and provision quickly. This gives them high portability</p>
 					</section>
 					<section data-background="lightblue">
 						<p>A major advantage with containers is that OS distributions and underlying infrastructure are abstracted away.</p>
@@ -87,7 +87,7 @@
 						<p>Which is better? Hint: not monolithic</p>
 					</section>
 					<section data-background="lightblue">
-						<p>Decoupled applications allow each compontent to perfrom its tasks independantly. A change in one service shouldn't require a change in other services</p>
+						<p>Decoupled applications allow each compontent to perform its tasks independantly. A change in one service shouldn't require a change in other services</p>
 						<br>
 						<p>Using containers as microservices opens the door to horizontal scalability and high availablity</p>
 					</section>
@@ -98,7 +98,6 @@
 							<li>Lightweight, portable, and rapid provisioning</li>
 							<li>Decoupled and highly available</li>
 							<li>Reproducible and horizontally scalable</li>
-							<li>adsf</li>
 						</ul>
 					</section>
 
@@ -112,7 +111,13 @@
 						<p>Besides version control, a decent branching strategy, and the actual source code, CICD is the most important component of software applications</p>
 					</section>
 					<section data-background="#17202a">
-						<p>removes the human from performing tests and deployments. all repetivite tasks should be eliminated or automated</p>
+						<p>Why? It removes the human from performing repetivite tasks. Humans make mistakes, we shouldn't manually execute high risk tasks &#8212 such as production deployments</p>
+					</section>
+					<section data-background="#17202a">
+						<p>All repetivite tasks should either be eliminated or automated. Automation reduces the room for error and saves engineers time, allowing for them to focus on developing a good product</p>
+					</section>
+					<section data-background="#17202a">
+						<p>A good pipeline will build, test, and deploy your code.</p>
 					</section>
 				</section>
 
@@ -121,10 +126,16 @@
 						<h2>GitHub Actions</h2>
 					</section>
 					<section data-background="white">
-						<h2>data-background: rgba(0, 0, 0, 0.2)</h2>
+						<p>GitHub Actions is yet another tool to automate application workflows</p>
 					</section>
 					<section data-background="white">
-						<h2></h2>
+						<p>Why GitHub Actions? How is it different than these tools</p>
+					</section>
+					<section data-background="white">
+						<p>Keep your source code and cicd in the same place. backed by microsoft</p>
+					</section>
+					<section data-background="white">
+						<p>Easily integrate triaging workflows. </p>
 					</section>
 				</section>
 
