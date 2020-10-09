@@ -37,7 +37,7 @@
 					<body>Austin Hardt</body>
 				</section>
 				<section data-background="dark">
-					<p>Let's talk about these topics.</p>
+					<p>Let's talk about these topics</p>
 					<ul>
 						<li>Containers</li>
 						<li>CICD</li>
@@ -46,7 +46,7 @@
 					</ul>
 				</section>
 				<section data-background="dark">
-					<p>After that, I'll demonstate a deployment.</p>
+					<p>After that, I'll demonstrate a deployment</p>
 					<ol>
 						<li>Commit Changes</li>
 						<li>Watch</li>
@@ -96,10 +96,10 @@
 					<p>Which is better?</p>
 				</section>
 				<section data-background="indigo">
-					<p>Decoupled applications allow each compontent to perform its tasks independantly. A change in one
+					<p>Decoupled applications allow each component to perform its tasks independently. A change in one
 						service shouldn't require a change in other services</p>
 					<br>
-					<p>Using containers as microservices opens the door to horizontal scalability and high availablity
+					<p>Using containers as microservices opens the door to horizontal scalability and high availability
 					</p>
 				</section>
 				<section data-background="indigo">
@@ -124,18 +124,18 @@
 						most important component of software applications</p>
 				</section>
 				<section data-background="#17202a">
-					<p>Why? It removes the human from performing repetivite tasks. Humans make mistakes, we shouldn't
+					<p>Why? It removes the human from performing repetitive tasks. Humans make mistakes, we shouldn't
 						manually execute high risk tasks &#8212 such as production deployments</p>
 				</section>
 				<section data-background="#17202a">
-					<p>All repetivite tasks should either be eliminated or automated. Automation reduces the room for
+					<p>All repetitive tasks should either be eliminated or automated. Automation reduces the room for
 						error and saves engineers time, allowing for them to focus on developing a good product</p>
 				</section>
 				<section data-background="#17202a">
 					<p>My Philosophy</p>
 					<br>
-					<p>Continously introduce small changes to production each day. To achieve this, invest in tooling,
-						quality assurance processes, visiblity, and automation</p>
+					<p>Continuously introduce small changes to production each day. To achieve this, invest in tooling,
+						quality assurance processes, visibility, and automation</p>
 				</section>
 				<section data-background="#17202a">
 					<p>There are many CICD tools you can use for this; let's discuss why I chose...</p>
@@ -163,16 +163,20 @@
 					<h4>Advantages of GitHub Actions</h4>
 				</section>
 				<section data-background="white">
-					<p><b>Convience.</b> Harbour your source code, version control, branch managment, secrets, workflows, etc., <b>all in one place</b></p>
+					<p><b>Convenience.</b> Harbour your source code, version control, branch management, secrets,
+						workflows, etc., <b>all in one place</b></p>
 				</section>
 				<section data-background="white">
-					<p><b>Customization.</b> Common events in GitHub can trigger custom workflows. For example, triaging workflows can automatically assign, create, and close cards on a project board based on the status of issues or pull requests</p>
+					<p><b>Customization.</b> Common events in GitHub can trigger custom workflows. For example, triaging
+						workflows can automatically assign, create, and close cards on a project board based on the
+						status of issues or pull requests</p>
 				</section>
 				<section data-background="white">
 					<p><b>Modern.</b> It's new, serverless, open source, and backed by Microsoft</p>
 				</section>
 				<section data-background="white">
-					<p>Of all the CICD tools I've used personally, GitHub Actions has provided the simplest and most intuitive experience</p>
+					<p>Of all the CICD tools I've used personally, GitHub Actions has provided the simplest and most
+						intuitive experience</p>
 				</section>
 				<section data-background="white">
 					<p>Now let's jump into how I'm using GitHub Actions with...</p>
@@ -187,11 +191,37 @@
 				<section data-background="darkred">
 					<p>What is AWS Fargate?</p>
 					<br>
-					<p>A. Serverless containers</p>
+					<p>It's an offering you can use to run your containers on Elastic Container Service (ECS) or Elastic
+						Kubernetes Service (EKS)</p>
 				</section>
 				<section data-background="darkred">
-					<p>why fargate instead of ecs or eks</p>
-					<p>Fargate is a service you can use to run containers on AWS ECS without having to manage servers or clusters of EC2 instances. Basically, its serverless containers.</p>
+					<p>Why Fargate? Why not use ECS or EKS traditionally?</p>
+				</section>
+				<section data-background="darkred">
+					<h4>Advantages over traditional ECS & EKS</h4>
+				</section>
+				<section data-background="darkred">
+					<p><b>Serverless.</b> Fargate allows you to run containers without having to manage servers or
+						clusters of EC2 instances. This yields a massive reduction in operational responsibility and
+						maintenance</p>
+				</section>
+				<section data-background="darkred">
+					<p><b>Flexible.</b> Can be used in both event-based and continuous architectures</p>
+				</section>
+				<section data-background="darkred">
+					<p>How does Fargate fit into event based architecture?</p>
+					<br>
+					<p>For functions that require heavy lifting (require high resources, take a long time, etc.), use
+						Fargate. For all other functions use Lambda</p>
+				</section>
+				<section data-background="darkred">
+					<p>Now, should I use Fargate with ECS or EKS?</p>
+				</section>
+				<section data-background="darkred">
+					<p>Use Fargate with ECS for standalone applications and functions</p>
+				</section>
+				<section data-background="darkred">
+					<p>And use Fargate with EKS when you have kubernetes-based applications</p>
 				</section>
 			</section>
 
@@ -211,8 +241,8 @@
 			center: true,
 
 			transition: 'linear',
-			// transitionSpeed: 'slow',
-			// backgroundTransition: 'slide'
+			//transitionSpeed: 'slow',
+			//backgroundTransition: 'slide'
 		});
 
 	</script>
